@@ -1,0 +1,1548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SAP Consultant Launchpad</title>
+<meta name="description" content="A curated launchpad of official SAP sources for consultants and architects: Help Portal, Community, SAP for Me, Discovery Center, Business Accelerator Hub, Ariba and Next-Gen Ariba, S/4HANA, BTP and the integrated toolchain, with short learning guides.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SAP Consultant Launchpad">
+<meta property="og:description" content="Official SAP sources in one place, grouped for consultants and architects, with short learning guides for BTP, integration, Source-to-Pay, Next-Gen Ariba and clean core.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Baseline reset (the hosted artifact got this from its wrapper; a standalone
+   page has to bring its own). */
+:root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; font-size: 14px; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+
+/* Layout: fixed left rail (groups, My Links, Guides) + sticky search bar over a
+   dense tile wall; emblem plates carry each tile; guides open a right drawer. */
+:root {
+  --bg: #eef1f7;
+  --panel: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #e7ebf3;
+  --fg: #11151d;
+  --fg-muted: #555e70;
+  --line: #d4dae6;
+  --line-strong: #b7c0d1;
+  --accent: #0a5fc4;
+  --accent-soft: rgba(10, 95, 196, 0.10);
+  --shadow-rest: 0 1px 2px rgba(17, 21, 29, 0.05), 0 10px 22px -18px rgba(17, 21, 29, 0.35);
+  --shadow-lift: 0 2px 5px rgba(17, 21, 29, 0.08), 0 24px 44px -24px rgba(17, 21, 29, 0.5);
+  --shadow-plate: 0 2px 6px -1px rgba(17, 21, 29, 0.28);
+  --glow: 0.13;
+  --wash: 6%;
+  --plate-fg: #ffffff;
+
+  --c-learn: #0a5fc4;      --a-learn: #00b8d4;
+  --c-community: #0d7490;  --a-community: #22c55e;
+  --c-btp: #6d28d9;        --a-btp: #3b82f6;
+  --c-ariba: #b45309;      --a-ariba: #e11d48;
+  --c-s4: #15803d;         --a-s4: #65a30d;
+  --c-ai: #a21caf;         --a-ai: #6366f1;
+  --c-arch: #be123c;       --a-arch: #f97316;
+  --c-deploy: #4338ca;     --a-deploy: #06b6d4;
+  --c-hl: #b45309;         --a-hl: #ea580c;
+  --c-mine: #475569;       --a-mine: #0ea5e9;
+
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #090c12;
+    --panel: #11151d;
+    --surface: #141924;
+    --surface-2: #1b212d;
+    --fg: #e6e9f1;
+    --fg-muted: #929bb0;
+    --line: #222835;
+    --line-strong: #333b4b;
+    --accent: #62a8ff;
+    --accent-soft: rgba(98, 168, 255, 0.14);
+    --shadow-rest: 0 1px 2px rgba(0,0,0,.55), 0 14px 28px -22px rgba(0,0,0,.95);
+    --shadow-lift: 0 2px 6px rgba(0,0,0,.6), 0 28px 50px -26px rgba(0,0,0,1);
+    --shadow-plate: 0 3px 10px -2px rgba(0,0,0,.6);
+    --glow: 0.2;
+    --wash: 10%;
+    --plate-fg: #0b0f16;
+    --c-learn: #5aa6ff;      --a-learn: #4ae0f5;
+    --c-community: #2dd4bf;  --a-community: #86efac;
+    --c-btp: #a78bfa;        --a-btp: #7dd3fc;
+    --c-ariba: #fbbf24;      --a-ariba: #fb7185;
+    --c-s4: #4ade80;         --a-s4: #bef264;
+    --c-ai: #e879f9;         --a-ai: #a5b4fc;
+    --c-arch: #fb7185;       --a-arch: #fdba74;
+    --c-deploy: #818cf8;     --a-deploy: #67e8f9;
+    --c-hl: #fbbf24;         --a-hl: #fb923c;
+    --c-mine: #94a3b8;       --a-mine: #7dd3fc;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #090c12;
+  --panel: #11151d;
+  --surface: #141924;
+  --surface-2: #1b212d;
+  --fg: #e6e9f1;
+  --fg-muted: #929bb0;
+  --line: #222835;
+  --line-strong: #333b4b;
+  --accent: #62a8ff;
+  --accent-soft: rgba(98, 168, 255, 0.14);
+  --shadow-rest: 0 1px 2px rgba(0,0,0,.55), 0 14px 28px -22px rgba(0,0,0,.95);
+  --shadow-lift: 0 2px 6px rgba(0,0,0,.6), 0 28px 50px -26px rgba(0,0,0,1);
+  --shadow-plate: 0 3px 10px -2px rgba(0,0,0,.6);
+  --glow: 0.2;
+  --wash: 10%;
+  --plate-fg: #0b0f16;
+  --c-learn: #5aa6ff;      --a-learn: #4ae0f5;
+  --c-community: #2dd4bf;  --a-community: #86efac;
+  --c-btp: #a78bfa;        --a-btp: #7dd3fc;
+  --c-ariba: #fbbf24;      --a-ariba: #fb7185;
+  --c-s4: #4ade80;         --a-s4: #bef264;
+  --c-ai: #e879f9;         --a-ai: #a5b4fc;
+  --c-arch: #fb7185;       --a-arch: #fdba74;
+  --c-deploy: #818cf8;     --a-deploy: #67e8f9;
+  --c-hl: #fbbf24;         --a-hl: #fb923c;
+  --c-mine: #94a3b8;       --a-mine: #7dd3fc;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 60;
+  background: var(--panel);
+}
+
+.app { display: flex; min-height: 100%; }
+
+/* ---------- Rail ---------- */
+
+.rail {
+  flex: none;
+  width: 248px;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  padding-left: max(14px, env(safe-area-inset-left, 0px));
+  padding-right: 14px;
+  padding-block: 18px 14px;
+  overflow-y: auto;
+}
+
+.brand { display: flex; align-items: center; gap: 11px; margin-bottom: 20px; }
+.brand .glyph {
+  width: 38px; height: 38px; flex: none;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px;
+}
+.brand .glyph i { border-radius: 3px; display: block; }
+.brand .glyph i:nth-child(1) { background: linear-gradient(135deg, var(--c-learn), var(--a-learn)); }
+.brand .glyph i:nth-child(2) { background: linear-gradient(135deg, var(--c-ariba), var(--a-ariba)); }
+.brand .glyph i:nth-child(3) { background: linear-gradient(135deg, var(--c-community), var(--a-community)); }
+.brand .glyph i:nth-child(4) { background: linear-gradient(135deg, var(--c-ai), var(--a-ai)); }
+.brand h1 {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.1rem;
+  letter-spacing: -0.02em; margin: 0; line-height: 1.15;
+}
+.brand .meta {
+  margin: 1px 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.nav { display: flex; flex-direction: column; gap: 2px; }
+.nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin: 16px 0 7px 9px;
+}
+.nav button {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.89rem; font-weight: 600;
+  color: var(--fg-muted);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 130ms ease, color 130ms ease;
+}
+.nav button .swatch {
+  width: 9px; height: 9px; border-radius: 3px; flex: none;
+  background: linear-gradient(135deg, var(--hue), var(--alt));
+}
+.nav button .n {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+.nav button:hover { background: var(--surface-2); color: var(--fg); }
+.nav button[aria-current="true"] { background: var(--surface-2); color: var(--fg); }
+.nav button[aria-current="true"] .swatch { box-shadow: 0 0 0 3px color-mix(in srgb, var(--hue) 22%, transparent); }
+.nav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.rail-foot { margin-top: auto; padding-top: 16px; font-size: 0.74rem; color: var(--fg-muted); }
+
+/* ---------- Main ---------- */
+
+.main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+.bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 25;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+  padding-block: 11px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.railtoggle { display: none; }
+
+.search { position: relative; flex: 1 1 auto; min-width: 0; max-width: 420px; }
+.search input {
+  width: 100%;
+  font-family: var(--font-body); font-size: 0.92rem; color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 42px 9px 36px;
+}
+.search .mag {
+  position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+  width: 15px; height: 15px; color: var(--fg-muted); pointer-events: none;
+}
+.search input::placeholder { color: var(--fg-muted); }
+.search input:focus-visible {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.search kbd {
+  position: absolute; right: 9px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-mono); font-size: 0.66rem; color: var(--fg-muted);
+  border: 1px solid var(--line-strong); border-radius: 4px; padding: 1px 5px;
+  pointer-events: none;
+}
+
+.btn {
+  flex: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-body); font-size: 0.86rem; font-weight: 600;
+  color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 9px;
+  padding: 8px 13px; cursor: pointer;
+}
+.btn svg { width: 15px; height: 15px; }
+.btn:hover { border-color: var(--line-strong); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn.primary {
+  color: var(--plate-fg);
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--a-btp)));
+  border-color: transparent;
+}
+.iconbtn {
+  flex: none; width: 38px; height: 38px;
+  display: grid; place-items: center;
+  background: var(--surface); color: var(--fg-muted);
+  border: 1px solid var(--line); border-radius: 9px;
+  cursor: pointer; font-size: 0.95rem; font-family: var(--font-body);
+}
+.iconbtn:hover { color: var(--fg); border-color: var(--line-strong); }
+.iconbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+main {
+  padding-block: 24px 60px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1320px; }
+
+.view-head { margin-bottom: 22px; }
+.view-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700;
+  letter-spacing: -0.028em; margin: 0;
+  text-wrap: balance;
+}
+.view-head p { margin: 5px 0 0; color: var(--fg-muted); font-size: 0.93rem; max-width: 66ch; }
+
+.group { margin-bottom: 34px; }
+.group:last-child { margin-bottom: 0; }
+.group-head { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; }
+.group-head .dot {
+  width: 10px; height: 10px; border-radius: 3px; flex: none;
+  background: linear-gradient(135deg, var(--hue), var(--alt));
+}
+.group-head h3 {
+  font-family: var(--font-display);
+  font-size: 0.79rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin: 0; color: var(--fg);
+}
+.group-head .rule {
+  flex: 1; height: 1px; min-width: 12px;
+  background: linear-gradient(to right, color-mix(in srgb, var(--hue) 48%, transparent), var(--line) 50%, transparent);
+}
+.group-head .count {
+  font-family: var(--font-mono); font-size: 0.71rem;
+  color: var(--fg-muted); font-variant-numeric: tabular-nums; flex: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
+  grid-auto-flow: dense;
+  gap: 13px;
+}
+
+/* ---------- Tile ---------- */
+
+.tile {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex; flex-direction: column; gap: 9px;
+  min-width: 0; min-height: 158px;
+  background: linear-gradient(156deg, color-mix(in srgb, var(--hue) var(--wash), var(--surface)) 0%, var(--surface) 60%);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 15px 15px 13px;
+  box-shadow: var(--shadow-rest);
+  transition: transform 190ms cubic-bezier(.22,.61,.36,1), box-shadow 190ms ease, border-color 190ms ease;
+  animation: rise 420ms cubic-bezier(.22,.61,.36,1) backwards;
+  animation-delay: calc(var(--i, 0) * 24ms);
+}
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+.tile.big { grid-column: span 2; }
+@media (max-width: 720px) { .tile.big { grid-column: span 1; } }
+
+.tile::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 3px;
+  background: linear-gradient(to right, var(--hue), var(--alt));
+  transform: scaleX(.3); transform-origin: left;
+  transition: transform 230ms cubic-bezier(.22,.61,.36,1);
+  z-index: 2;
+}
+.tile::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(250px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--hue) 60%, transparent), transparent 70%);
+  opacity: 0; transition: opacity 200ms ease; pointer-events: none; z-index: 0;
+}
+.tile > * { position: relative; z-index: 1; }
+.tile:hover, .tile:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+  border-color: color-mix(in srgb, var(--hue) 42%, var(--line));
+}
+.tile:hover::before, .tile:focus-within::before { transform: scaleX(1); }
+.tile:hover::after, .tile:focus-within::after { opacity: var(--glow); }
+
+/* highlighted tile */
+.tile.hl {
+  border-color: color-mix(in srgb, var(--hue) 58%, var(--line));
+  background: linear-gradient(152deg, color-mix(in srgb, var(--hue) calc(var(--wash) * 2.8), var(--surface)) 0%, var(--surface) 74%);
+  box-shadow: var(--shadow-rest), 0 0 0 1px color-mix(in srgb, var(--hue) 24%, transparent);
+}
+.tile.hl::before { transform: scaleX(1); height: 4px; }
+.tile.hl .plate { box-shadow: var(--shadow-plate), 0 0 0 4px color-mix(in srgb, var(--hue) 18%, transparent); }
+.tile.hl .chip-tag.solid { animation: hlpulse 2.8s ease-in-out infinite; }
+@keyframes hlpulse { 0%, 100% { opacity: 1 } 50% { opacity: .6 } }
+
+.tile-link {
+  position: absolute; inset: 0; z-index: 3;
+  border: 0; background: transparent; padding: 0; margin: 0;
+  cursor: pointer; border-radius: 13px;
+  font: inherit; color: transparent;
+  -webkit-appearance: none; appearance: none;
+}
+.tile-link:focus-visible { outline: 2px solid var(--hue); outline-offset: -2px; }
+
+.tile-top { display: flex; align-items: flex-start; gap: 11px; min-width: 0; }
+
+.plate {
+  flex: none;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(140deg, var(--hue), var(--alt));
+  color: var(--plate-fg);
+  box-shadow: var(--shadow-plate);
+  transition: transform 190ms cubic-bezier(.22,.61,.36,1), box-shadow 190ms ease;
+}
+.plate svg { width: 23px; height: 23px; display: block; }
+.plate .mono {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.86rem;
+  letter-spacing: -0.02em;
+}
+.tile.big .plate { width: 48px; height: 48px; border-radius: 13px; }
+.tile.big .plate svg { width: 26px; height: 26px; }
+.tile:hover .plate { transform: scale(1.06) rotate(-2deg); }
+
+.tile h4 {
+  font-family: var(--font-display);
+  font-size: 0.99rem; font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.25;
+  margin: 3px 0 0; min-width: 0; overflow-wrap: anywhere;
+  padding-right: 24px;
+}
+.tile.big h4 { font-size: 1.08rem; }
+.tile p {
+  margin: 0; font-size: 0.86rem; line-height: 1.46;
+  color: var(--fg-muted); min-width: 0; overflow-wrap: anywhere;
+}
+
+.tile-foot {
+  margin-top: auto; padding-top: 9px;
+  display: flex; align-items: center; gap: 8px; min-width: 0;
+  border-top: 1px solid color-mix(in srgb, var(--hue) 15%, var(--line));
+}
+.tile-foot .host {
+  font-family: var(--font-mono); font-size: 0.69rem; color: var(--fg-muted);
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.tile-foot .go { margin-left: auto; flex: none; color: var(--hue); display: grid; place-items: center; transition: transform 190ms ease; }
+.tile-foot .go svg { width: 15px; height: 15px; display: block; }
+.tile:hover .tile-foot .go { transform: translate(2px, -2px); }
+
+.chip-tag {
+  flex: none;
+  font-family: var(--font-mono); font-size: 0.58rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--hue);
+  background: color-mix(in srgb, var(--hue) 15%, transparent);
+  border-radius: 4px; padding: 2px 6px;
+}
+.chip-tag.solid { color: var(--plate-fg); background: linear-gradient(135deg, var(--hue), var(--alt)); }
+
+.tile-actions {
+  position: absolute; top: 10px; right: 10px; z-index: 4;
+  display: flex; gap: 4px;
+}
+.act {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 7px;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  color: var(--fg-muted);
+  cursor: pointer; padding: 0;
+  opacity: 0; transition: opacity 150ms ease, color 150ms ease, background 150ms ease;
+}
+.act svg { width: 14px; height: 14px; display: block; }
+.tile:hover .act, .tile:focus-within .act, .act:focus-visible { opacity: 1; }
+.act:hover { color: var(--fg); background: var(--surface-2); }
+.act.on { opacity: 1; color: var(--hue); }
+.act:focus-visible { outline: 2px solid var(--hue); outline-offset: 1px; }
+@media (hover: none) { .act { opacity: 1; } }
+
+/* add-tile */
+.tile.add {
+  background: transparent;
+  border: 1px dashed var(--line-strong);
+  box-shadow: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 158px;
+  color: var(--fg-muted);
+}
+.tile.add::before, .tile.add::after { display: none; }
+.tile.add .plus {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 11px;
+  border: 1px solid color-mix(in srgb, var(--hue) 40%, var(--line));
+  color: var(--hue);
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+.tile.add .plus svg { width: 20px; height: 20px; }
+.tile.add .label { font-family: var(--font-display); font-size: .86rem; font-weight: 600; text-align: center; }
+.tile.add:hover {
+  border-color: var(--hue);
+  border-style: solid;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-rest);
+}
+.tile.add:hover .plus { background: linear-gradient(140deg, var(--hue), var(--alt)); color: var(--plate-fg); transform: scale(1.06); }
+
+/* notes */
+.notegrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.notecard {
+  position: relative;
+  background: linear-gradient(156deg, color-mix(in srgb, var(--c-mine) var(--wash), var(--surface)) 0%, var(--surface) 55%);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 16px 16px 14px;
+  box-shadow: var(--shadow-rest);
+  min-width: 0;
+}
+.notecard > .tile-actions .act { opacity: 1; }
+.notecard h4 {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  letter-spacing: -.012em; margin: 0 0 3px; padding-right: 60px;
+  overflow-wrap: anywhere;
+}
+.notecard .when {
+  font-family: var(--font-mono); font-size: .67rem; color: var(--fg-muted);
+  font-variant-numeric: tabular-nums; display: block; margin-bottom: 9px;
+}
+.notecard .sum { margin: 0 0 10px; font-size: .88rem; color: var(--fg-muted); line-height: 1.5; overflow-wrap: anywhere; }
+.notecard ul { margin: 0 0 10px; padding-left: 0; list-style: none; display: grid; gap: 6px; }
+.notecard ul li { position: relative; padding-left: 15px; font-size: .87rem; line-height: 1.45; overflow-wrap: anywhere; }
+.notecard ul li::before {
+  content: ""; position: absolute; left: 0; top: .6em;
+  width: 5px; height: 5px; border-radius: 2px;
+  background: linear-gradient(135deg, var(--c-mine), var(--a-mine));
+}
+.notecard .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.notecard .tags span {
+  font-family: var(--font-mono); font-size: .62rem; letter-spacing: .05em;
+  color: var(--fg-muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px;
+}
+.notecard .nlinks { display: flex; flex-direction: column; gap: 5px; padding-top: 10px; border-top: 1px solid var(--line); }
+.notecard .nlinks a {
+  font-size: .82rem; color: var(--a-mine); text-decoration: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.notecard .nlinks a:hover { text-decoration: underline; }
+.notecard .raw {
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line);
+  font-size: .82rem; color: var(--fg-muted); white-space: pre-wrap;
+  max-height: 180px; overflow-y: auto; overflow-wrap: anywhere;
+}
+.notecard details summary {
+  cursor: pointer; font-size: .78rem; font-weight: 600; color: var(--fg-muted);
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line);
+}
+.notecard details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* link importer */
+.implist { display: grid; gap: 2px; max-height: 340px; overflow-y: auto; margin-bottom: 12px; border: 1px solid var(--line); border-radius: 10px; padding: 6px; }
+.improw { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-radius: 8px; min-width: 0; }
+.improw:hover { background: var(--surface-2); }
+.improw input[type="checkbox"] { width: 16px; height: 16px; flex: none; accent-color: var(--accent); }
+.improw .txt { min-width: 0; flex: 1; display: grid; gap: 2px; }
+.improw .txt input {
+  font-family: var(--font-body); font-size: .88rem; font-weight: 600; color: var(--fg);
+  background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; width: 100%;
+}
+.improw .txt input:hover { border-color: var(--line); }
+.improw .txt input:focus-visible { outline: none; border-color: var(--accent); background: var(--bg); }
+.improw .u { font-family: var(--font-mono); font-size: .68rem; color: var(--fg-muted); padding-left: 7px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.improw .dupe { flex: none; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; color: var(--c-ariba); border: 1px solid currentColor; border-radius: 4px; padding: 1px 5px; }
+.selbar { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; font-size: .82rem; color: var(--fg-muted); flex-wrap: wrap; }
+.selbar button {
+  font-family: var(--font-body); font-size: .8rem; font-weight: 600; color: var(--accent);
+  background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline;
+}
+.selbar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.checkline { display: flex; align-items: center; gap: 9px; font-size: .86rem; margin-bottom: 12px; }
+.checkline input { width: 16px; height: 16px; accent-color: var(--accent); }
+
+/* applications */
+.pipe { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 22px; }
+.pipecell {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 11px;
+  padding: 12px 13px; border-left: 3px solid var(--hue); box-shadow: var(--shadow-rest);
+}
+.pipecell .k { font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-muted); }
+.pipecell .v { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1.1; margin-top: 2px; }
+
+.appgroup { margin-bottom: 26px; }
+.appgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.appcard {
+  position: relative;
+  background: linear-gradient(156deg, color-mix(in srgb, var(--hue) var(--wash), var(--surface)) 0%, var(--surface) 58%);
+  border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 14px 12px; box-shadow: var(--shadow-rest); min-width: 0;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.appcard .act { opacity: 1; }
+.appcard h4 { font-family: var(--font-display); font-size: .97rem; font-weight: 600; letter-spacing: -.01em; margin: 0; padding-right: 62px; overflow-wrap: anywhere; }
+.appcard .co { font-size: .85rem; color: var(--fg-muted); overflow-wrap: anywhere; }
+.appcard .nt { font-size: .83rem; color: var(--fg-muted); line-height: 1.45; overflow-wrap: anywhere; }
+.appcard .appfoot { margin-top: auto; padding-top: 9px; border-top: 1px solid color-mix(in srgb, var(--hue) 15%, var(--line)); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.appcard select {
+  font-family: var(--font-body); font-size: .76rem; font-weight: 600; color: var(--hue);
+  background: color-mix(in srgb, var(--hue) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--hue) 32%, transparent);
+  border-radius: 999px; padding: 3px 8px; cursor: pointer;
+}
+.appcard select:focus-visible { outline: 2px solid var(--hue); outline-offset: 1px; }
+.appcard .open {
+  margin-left: auto; font-size: .79rem; font-weight: 600; color: var(--hue);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+}
+.appcard .open svg { width: 13px; height: 13px; }
+.appcard .open:hover { text-decoration: underline; }
+.appcard .when { font-family: var(--font-mono); font-size: .65rem; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+
+/* documents */
+.dropzone {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  border: 1px dashed var(--line-strong); border-radius: 13px;
+  padding: 26px 20px; margin-bottom: 22px; text-align: center;
+  background: var(--surface); transition: border-color .15s, background .15s;
+}
+.dropzone.over { border-style: solid; border-color: var(--accent); background: var(--accent-soft); }
+.dropzone .dzicon {
+  width: 42px; height: 42px; display: grid; place-items: center; border-radius: 11px;
+  background: linear-gradient(140deg, var(--c-deploy), var(--a-deploy));
+  color: var(--plate-fg); box-shadow: var(--shadow-plate);
+}
+.dropzone .dzicon svg { width: 22px; height: 22px; }
+.dropzone .dzmain { font-family: var(--font-display); font-weight: 600; font-size: .96rem; }
+.dropzone .dzsub { font-size: .83rem; color: var(--fg-muted); max-width: 52ch; }
+.dropzone input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.dzlabel {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-body); font-size: .86rem; font-weight: 600;
+  color: var(--plate-fg);
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--a-btp)));
+  border: 1px solid transparent; border-radius: 9px; padding: 8px 14px; cursor: pointer;
+}
+.dzlabel svg { width: 15px; height: 15px; }
+.dropzone input[type="file"]:focus-visible + .dzlabel { outline: 2px solid var(--accent); outline-offset: 2px; }
+.uplist { display: grid; gap: 6px; margin-bottom: 18px; }
+.uprow {
+  display: flex; align-items: center; gap: 10px; min-width: 0;
+  font-size: .85rem; border: 1px solid var(--line); border-radius: 9px;
+  padding: 8px 12px; background: var(--surface);
+}
+.uprow .nm { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.uprow .stt { font-family: var(--font-mono); font-size: .7rem; color: var(--fg-muted); flex: none; }
+.uprow.bad { border-color: var(--c-arch); }
+.uprow.bad .stt { color: var(--c-arch); }
+
+.pastebox {
+  min-height: 190px;
+  font-family: var(--font-body); font-size: .92rem; line-height: 1.5;
+  color: var(--fg); background: var(--bg);
+  border: 1px dashed var(--line-strong); border-radius: 10px;
+  padding: 13px; width: 100%; resize: vertical;
+}
+.pastebox:focus-visible { outline: none; border-style: solid; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.empty {
+  border: 1px dashed var(--line-strong);
+  border-radius: 13px;
+  padding: 44px 24px;
+  text-align: center;
+  color: var(--fg-muted);
+  font-size: 0.92rem;
+}
+.empty strong { display: block; color: var(--fg); font-family: var(--font-display); font-size: 1rem; margin-bottom: 6px; }
+.empty .btn { margin-top: 14px; }
+
+/* ---------- Form ---------- */
+
+.panelcard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 18px;
+  box-shadow: var(--shadow-rest);
+  margin-bottom: 24px;
+  max-width: 640px;
+}
+.panelcard h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin: 0 0 14px; letter-spacing: -0.01em; }
+.field { display: grid; gap: 5px; margin-bottom: 12px; }
+.field label { font-size: 0.78rem; font-weight: 600; color: var(--fg-muted); letter-spacing: 0.02em; }
+.field input, .field select, .field textarea {
+  font-family: var(--font-body); font-size: 0.92rem; color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: 9px 11px; width: 100%;
+}
+.field textarea { resize: vertical; min-height: 60px; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }
+.form-foot { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.note { font-size: 0.8rem; color: var(--fg-muted); margin: 10px 0 0; }
+.note.warn { color: var(--c-arch); }
+
+/* ---------- Drawer ---------- */
+
+.scrim { position: fixed; inset: 0; background: rgba(6,9,14,.6); opacity: 0; visibility: hidden; transition: opacity 180ms ease, visibility 180ms; z-index: 70; }
+.scrim.open { opacity: 1; visibility: visible; }
+
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: min(560px, 100%);
+  background: linear-gradient(170deg, color-mix(in srgb, var(--hue) var(--wash), var(--surface)) 0%, var(--surface) 44%);
+  border-left: 1px solid var(--line);
+  z-index: 71;
+  display: flex; flex-direction: column;
+  transform: translateX(100%); visibility: hidden;
+  transition: transform 250ms cubic-bezier(.22,.61,.36,1), visibility 250ms;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+.drawer.open { transform: translateX(0); visibility: visible; }
+.drawer-head { display: flex; align-items: flex-start; gap: 13px; padding: 18px 18px 15px; border-bottom: 1px solid var(--line); }
+.drawer-head h2 { font-family: var(--font-display); font-size: 1.14rem; font-weight: 700; letter-spacing: -0.022em; margin: 0; text-wrap: balance; }
+.drawer-head p { margin: 4px 0 0; font-size: 0.86rem; color: var(--fg-muted); }
+.drawer-body { overflow-y: auto; padding: 4px 18px 30px; }
+.drawer-body section { padding-block: 18px; border-bottom: 1px solid var(--line); }
+.drawer-body section:last-child { border-bottom: 0; }
+.drawer-body h3 { font-family: var(--font-display); font-size: 0.73rem; font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 11px; }
+.drawer-body ul, .drawer-body ol { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 10px; }
+.drawer-body li { font-size: 0.9rem; line-height: 1.5; padding-left: 16px; position: relative; }
+.drawer-body ul li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 2px; background: linear-gradient(135deg, var(--hue), var(--alt)); }
+.drawer-body ol { counter-reset: step; }
+.drawer-body ol li { padding-left: 32px; }
+.drawer-body ol li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: .06em;
+  width: 22px; height: 22px; border-radius: 6px;
+  background: linear-gradient(135deg, var(--hue), var(--alt));
+  color: var(--plate-fg);
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 500;
+  display: grid; place-items: center;
+}
+.drawer-body li b { font-weight: 600; }
+.drawer-body li span { color: var(--fg-muted); }
+.drawer-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.drawer-links a {
+  font-size: .83rem; font-weight: 600; color: var(--hue); text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--hue) 45%, transparent);
+  background: color-mix(in srgb, var(--hue) 10%, transparent);
+  border-radius: 8px; padding: 6px 11px;
+}
+.drawer-links a:hover { background: color-mix(in srgb, var(--hue) 20%, transparent); }
+.drawer-links a:focus-visible { outline: 2px solid var(--hue); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .01ms !important; animation: none !important; }
+  .tile:hover { transform: none; }
+  .tile:hover .plate { transform: none; }
+}
+
+@media (max-width: 900px) {
+  .rail {
+    position: fixed; left: 0; top: 0; bottom: 0; z-index: 80;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: transform 220ms cubic-bezier(.22,.61,.36,1);
+    box-shadow: var(--shadow-lift);
+    padding-top: calc(18px + env(safe-area-inset-top, 0px));
+  }
+  .rail.open { transform: translateX(0); }
+  .railtoggle { display: grid; }
+}
+
+/* standalone-only */
+.sitefoot {
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+  padding-block: 20px 34px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.sitefoot p { margin: 0; font-size: .8rem; color: var(--fg-muted); max-width: 70ch; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <nav class="rail" id="rail" aria-label="Sections">
+    <div class="brand">
+      <div class="glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div>
+        <h1>SAP Launchpad</h1>
+        <p class="meta" id="meta"></p>
+      </div>
+    </div>
+    <div class="nav" id="nav"></div>
+    <div class="rail-foot">Press <b>/</b> to search &middot; <b>Esc</b> to clear</div>
+  </nav>
+
+  <div class="main-col">
+    <div class="bar">
+      <button class="iconbtn railtoggle" id="railtoggle" type="button" aria-label="Show sections">&#9776;</button>
+      <div class="search">
+        <svg class="mag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="q" type="search" placeholder="Search every tile" autocomplete="off" aria-label="Search tiles">
+        <kbd>/</kbd>
+      </div>
+      <button class="iconbtn" id="theme" type="button" aria-label="Switch theme" title="Switch theme">&#9680;</button>
+    </div>
+    <main><div class="wrap" id="view"></div></main>
+    <div class="wrap sitefoot">
+      <p>Curated by Chakradhar Nannapaneni. Tiles link to official SAP sites; nothing is mirrored here. Document Library tiles open a private Google Drive folder and need access to it. Not affiliated with or endorsed by SAP SE. SAP and the product names are trademarks of SAP SE.</p>
+    </div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+  <div class="drawer-head">
+    <div class="plate" id="drawer-plate" aria-hidden="true"></div>
+    <div>
+      <h2 id="drawer-title"></h2>
+      <p id="drawer-sub"></p>
+    </div>
+    <button class="iconbtn" id="drawer-close" type="button" aria-label="Close" style="margin-left:auto">&#10005;</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+
+<script>
+const SVG = {
+  book: '<path d="M5 4.6A1.6 1.6 0 0 1 6.6 3H19v15H6.6A1.6 1.6 0 0 0 5 19.6z"/><path d="M5 19.6A1.6 1.6 0 0 0 6.6 21H19"/>',
+  route: '<circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.4 6h5.1a3.5 3.5 0 0 1 0 7h-3a3.5 3.5 0 0 0 0 7h5"/>',
+  badge: '<circle cx="12" cy="8.8" r="4.8"/><path d="M8.7 13.2 7.2 21l4.8-2.5L16.8 21l-1.5-7.8"/>',
+  doc: '<path d="M14 3H7a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V7.5z"/><path d="M14 3v4.5h4.5"/><path d="M9 12.5h6M9 16h4"/>',
+  compass: '<circle cx="12" cy="12" r="8.4"/><path d="m15.4 8.6-2 5-5 2 2-5z"/>',
+  map: '<path d="m3 6.6 6-2.5 6 2.5 6-2.5v12.8L15 19.4 9 16.9l-6 2.5z"/><path d="M9 4.1v12.8M15 6.6v12.8"/>',
+  users: '<circle cx="9" cy="8.4" r="3.4"/><path d="M3.2 19.8c0-3.2 2.6-5.4 5.8-5.4s5.8 2.2 5.8 5.4"/><path d="M16 5.2a3.4 3.4 0 0 1 0 6.4M17.6 14.8c2 .7 3.3 2.4 3.3 5"/>',
+  grid: '<rect x="3.6" y="3.6" width="6.8" height="6.8" rx="1.6"/><rect x="13.6" y="3.6" width="6.8" height="6.8" rx="1.6"/><rect x="3.6" y="13.6" width="6.8" height="6.8" rx="1.6"/><rect x="13.6" y="13.6" width="6.8" height="6.8" rx="1.6"/>',
+  lifebuoy: '<circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.4"/><path d="m6.1 6.1 3.4 3.4M17.9 6.1l-3.4 3.4M6.1 17.9l3.4-3.4M17.9 17.9l-3.4-3.4"/>',
+  note: '<rect x="4.2" y="3.6" width="15.6" height="16.8" rx="2"/><path d="M8 8.6h8M8 12h8M8 15.4h5"/>',
+  download: '<path d="M12 3.6v11"/><path d="m7.6 10.4 4.4 4.4 4.4-4.4"/><path d="M4.6 19.4h14.8"/>',
+  flow: '<rect x="3.6" y="3.6" width="6.8" height="4.8" rx="1.6"/><rect x="13.6" y="15.6" width="6.8" height="4.8" rx="1.6"/><path d="M7 8.4V14a4 4 0 0 0 4 4h2.6"/>',
+  shield: '<path d="M12 3.2 5.2 6.1v5.9c0 4.1 2.8 7.4 6.8 8.8 4-1.4 6.8-4.7 6.8-8.8V6.1z"/><path d="m9.2 12 2 2 3.6-3.9"/>',
+  code: '<path d="m8.4 8-4.4 4 4.4 4M15.6 8l4.4 4-4.4 4M13.4 5.2l-2.8 13.6"/>',
+  cloud: '<path d="M7.6 18.8h9.3a3.9 3.9 0 0 0 .5-7.8 5.9 5.9 0 0 0-11.3 1.5 3.7 3.7 0 0 0 1.5 6.3z"/>',
+  plug: '<path d="M9.2 3.2v4.8M14.8 3.2v4.8"/><path d="M6.6 8h10.8v2.9a5.4 5.4 0 0 1-10.8 0z"/><path d="M12 16.3v4.5"/>',
+  blocks: '<rect x="3.6" y="3.6" width="7.6" height="7.6" rx="1.6"/><rect x="12.8" y="12.8" width="7.6" height="7.6" rx="1.6"/><path d="M12.8 7.4h7.6M7.4 12.8v7.6"/>',
+  cart: '<circle cx="10" cy="19.3" r="1.4"/><circle cx="17.3" cy="19.3" r="1.4"/><path d="M3.2 4.2h2.4l2.3 10.8h10.2l1.9-7.4H6.5"/>',
+  network: '<circle cx="12" cy="5" r="2.4"/><circle cx="5.2" cy="19" r="2.4"/><circle cx="18.8" cy="19" r="2.4"/><path d="M12 7.4v4.2M12 11.6l-5.3 5.3M12 11.6l5.3 5.3"/>',
+  chart: '<path d="M4.2 19.8V4.2M4.2 19.8h15.6"/><path d="M8.4 17v-5M12.4 17V8M16.4 17v-7"/>',
+  sparkle: '<path d="m10.6 3.2 1.7 4.7 4.7 1.7-4.7 1.7-1.7 4.7-1.7-4.7-4.7-1.7 4.7-1.7z"/><path d="m18 15.2.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/>',
+  database: '<ellipse cx="12" cy="6" rx="6.8" ry="2.9"/><path d="M5.2 6v12c0 1.6 3 2.9 6.8 2.9s6.8-1.3 6.8-2.9V6"/><path d="M5.2 12c0 1.6 3 2.9 6.8 2.9s6.8-1.3 6.8-2.9"/>',
+  check: '<circle cx="12" cy="12" r="8.4"/><path d="m8.6 12 2.4 2.4 4.4-4.9"/>',
+  layers: '<path d="m12 3.2 8.4 4.4L12 12 3.6 7.6z"/><path d="m3.6 12 8.4 4.4L20.4 12"/><path d="m3.6 16.4 8.4 4.4 8.4-4.4"/>',
+  globe: '<circle cx="12" cy="12" r="8.4"/><path d="M3.6 12h16.8"/><path d="M12 3.6c2.2 2.4 3.4 5.3 3.4 8.4s-1.2 6-3.4 8.4c-2.2-2.4-3.4-5.3-3.4-8.4s1.2-6 3.4-8.4z"/>',
+  rocket: '<path d="M12 3.2c3.4 2.3 5.3 5.9 5.3 9.8l-2.4 3H9.1l-2.4-3c0-3.9 1.9-7.5 5.3-9.8z"/><circle cx="12" cy="9.9" r="1.7"/><path d="M9.1 16.4 7.3 20.8l3.8-1.9M14.9 16.4l1.8 4.4-3.8-1.9"/>',
+  gear: '<circle cx="12" cy="12" r="2.9"/><path d="M12 3.2v2.4M12 18.4v2.4M20.8 12h-2.4M5.6 12H3.2M18.2 5.8l-1.7 1.7M7.5 16.5l-1.7 1.7M18.2 18.2l-1.7-1.7M7.5 7.5 5.8 5.8"/>',
+  news: '<rect x="3.6" y="5" width="12.8" height="14" rx="1.6"/><path d="M16.4 9h3.8v8a2 2 0 0 1-2 2h-1.8z"/><path d="M6.6 8.6h6.8M6.6 12h6.8M6.6 15.4h4"/>',
+  star: '<path d="m12 3.4 2.7 5.6 6.1.8-4.5 4.3 1.1 6.1-5.4-3-5.4 3 1.1-6.1-4.5-4.3 6.1-.8z"/>',
+  link: '<path d="M10.2 13.8a4 4 0 0 0 5.7 0l2.6-2.6a4 4 0 0 0-5.7-5.7l-1.3 1.3"/><path d="M13.8 10.2a4 4 0 0 0-5.7 0l-2.6 2.6a4 4 0 1 0 5.7 5.7l1.3-1.3"/>',
+  arrow: '<path d="M6.6 17.4 17.4 6.6M9 6.6h8.4V15"/>',
+  chevron: '<path d="m9.6 5.6 6.4 6.4-6.4 6.4"/>',
+  pencil: '<path d="M4.5 19.5h3.4l9.4-9.4a2.4 2.4 0 0 0-3.4-3.4L4.5 16.1z"/><path d="m13.4 7.4 3.4 3.4"/>',
+  trash: '<path d="M4.8 6.6h14.4"/><path d="M8.4 6.6V4.8h7.2v1.8"/><path d="M6.6 6.6 7.5 20h9l.9-13.4"/>',
+  home: '<path d="m3.6 11 8.4-7.4 8.4 7.4"/><path d="M6 9.4v10.4h12V9.4"/>',
+  tick: '<path d="m5 12.6 4.6 4.6L19 7.4"/>',
+  cross: '<path d="M6.2 6.2l11.6 11.6M17.8 6.2 6.2 17.8"/>',
+  wrench: '<path d="M15.2 7.4a4.2 4.2 0 0 1 5.3 5.3l-3-3-2.3 2.3 3 3a4.2 4.2 0 0 1-5.3-5.3L4.4 6.3 6.3 4.4z"/><path d="m11.6 12.4-7 7"/>',
+  folder: '<path d="M3.6 6.4a1.6 1.6 0 0 1 1.6-1.6h3.6l2 2.6h7.6a1.6 1.6 0 0 1 1.6 1.6v8.6a1.6 1.6 0 0 1-1.6 1.6H5.2a1.6 1.6 0 0 1-1.6-1.6z"/>',
+  bulb: '<path d="M12 3.2a5.8 5.8 0 0 1 3.5 10.4c-.7.6-1.1 1.3-1.1 2.1v.5H9.6v-.5c0-.8-.4-1.5-1.1-2.1A5.8 5.8 0 0 1 12 3.2z"/><path d="M9.8 18.6h4.4M10.6 20.8h2.8"/>',
+  bookmark: '<path d="M6.4 3.8h11.2v17L12 16.6l-5.6 4.2z"/>',
+  bell: '<path d="M12 3.2a5.4 5.4 0 0 1 5.4 5.4v3.6l1.6 3.2H5l1.6-3.2V8.6A5.4 5.4 0 0 1 12 3.2z"/><path d="M9.8 18.6a2.3 2.3 0 0 0 4.4 0"/>',
+  clipboard: '<rect x="5.2" y="4.6" width="13.6" height="15.8" rx="1.8"/><path d="M9 4.6V3.4h6v1.2"/><path d="M8.6 10.4h6.8M8.6 14h4.8"/>',
+  pulse: '<path d="M3.4 12h3.8l2-5.4 3.4 11L15 12h5.6"/>',
+  target: '<circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/>',
+  play: '<circle cx="12" cy="12" r="8.4"/><path d="m10.2 8.6 5.4 3.4-5.4 3.4z"/>',
+  briefcase: '<rect x="3.4" y="7.4" width="17.2" height="12" rx="1.8"/><path d="M9 7.4V5.6a1.4 1.4 0 0 1 1.4-1.4h3.2A1.4 1.4 0 0 1 15 5.6v1.8"/><path d="M3.4 12.6h17.2"/>'
+}
+function icon(key, w) {
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 1.7) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (SVG[key] || SVG.grid) + '</svg>';
+}
+
+const CATS = [
+  { id: 'learn',     label: 'Learning',          hue: 'var(--c-learn)',     alt: 'var(--a-learn)' },
+  { id: 'community', label: 'Community & Support', hue: 'var(--c-community)', alt: 'var(--a-community)' },
+  { id: 'btp',       label: 'BTP & Development', hue: 'var(--c-btp)',       alt: 'var(--a-btp)' },
+  { id: 'ariba',     label: 'Ariba',             hue: 'var(--c-ariba)',     alt: 'var(--a-ariba)' },
+  { id: 's4',        label: 'S/4HANA & Process', hue: 'var(--c-s4)',        alt: 'var(--a-s4)' },
+  { id: 'ai',        label: 'AI & Data',         hue: 'var(--c-ai)',        alt: 'var(--a-ai)' },
+  { id: 'arch',      label: 'Architecture & Toolchain', hue: 'var(--c-arch)', alt: 'var(--a-arch)' },
+  { id: 'library',   label: 'Document Library', hue: 'var(--c-deploy)', alt: 'var(--a-deploy)' }
+]
+
+const CATMAP = {};
+CATS.forEach(c => { CATMAP[c.id] = c; });
+
+const TILES = [
+  // Learning
+  { cat:'learn', ic:'book', big:true, name:'SAP Learning', desc:'Free role-based journeys, practice systems and the certification hub — the single front door to SAP enablement.', url:'https://learning.sap.com', tags:'training course openSAP journey' },
+  { cat:'learn', ic:'route', name:'Learning Journeys', desc:'Structured paths by role, each ending in a certification.', url:'https://learning.sap.com/learning-journeys', tags:'journey path role curriculum' },
+  { cat:'learn', ic:'badge', name:'SAP Certification', desc:'Exam catalogue, stay-current requirements and the certification hub.', url:'https://learning.sap.com/certification', tags:'exam certified associate professional stay current' },
+  { cat:'learn', ic:'doc', big:true, name:'SAP Help Portal', desc:'Product documentation for every release and cloud edition. The one to keep pinned.', url:'https://help.sap.com/docs/', tags:'documentation docs manual guide online help' },
+  { cat:'learn', ic:'target', big:true, name:'Practice Systems', desc:'Live SAP systems to click around in, by product — Ariba, S/4HANA, Fieldglass, BTP. The closest thing to a sandbox without provisioning one.', url:'https://learning.sap.com/practice-systems', tags:'practice system sandbox hands on live trial exercise' },
+  { cat:'learn', ic:'layers', name:'Demo Landscapes', desc:'Demo systems on SAP’s Experience Agent platform, for showing solutions to customers.', url:'https://www.experience-agent.cloud.sap/assets/17350', tags:'demo landscape experience agent presales showcase customer system asset' },
+  { cat:'learn', ic:'play', name:'Live Sessions', desc:'Scheduled expert deep dives and get-started sessions, with recordings.', url:'https://learning.sap.com/live-sessions', tags:'live session webinar expert deep dive recording schedule' },
+  { cat:'learn', ic:'bell', big:true, hl:true, tag:'Upcoming events', hue:'var(--c-hl)', alt:'var(--a-hl)', name:'Cloud ERP Public Edition Community and Videos', desc:'Where SAP’s S/4HANA Cloud Expertise Services team posts its upcoming sessions — the Fundamentals series plus sales and AI topics. The thread is refreshed as new dates are announced, so check it rather than bookmarking one session.', url:'https://community.sap.com/t5/sap-s-4hana-cloud-expertise-services/upcoming-expertise-services-new-events-fundamentals-series-sales-ai/ta-p/295057', tags:'expertise services events fundamentals series sales ai upcoming webinar session s4hana cloud community' },
+  { cat:'learn', ic:'compass', name:'Tutorial Navigator', desc:'Short hands-on tutorials by product, language and level.', url:'https://developers.sap.com/tutorial-navigator.html', tags:'tutorial hands on exercise' },
+  { cat:'learn', ic:'rocket', name:'SAP Discovery Center', desc:'Missions, reference architectures and the full BTP service catalogue.', url:'https://discovery-center.cloud.sap', tags:'mission btp services reference architecture estimator' },
+  { cat:'learn', ic:'map', name:'Road Map Explorer', desc:'What is planned and when, per product and release.', url:'https://roadmaps.sap.com', tags:'roadmap release planned future innovation' },
+
+  // Community & Support
+  { cat:'community', ic:'users', big:true, name:'SAP Community', desc:'Questions, blogs and groups. Still the fastest route to a real answer from someone who has hit the same thing.', url:'https://community.sap.com', tags:'blog question forum answers scn' },
+  { cat:'community', ic:'grid', big:true, name:'SAP for Me', desc:'Systems, licences, cases, Process Navigator and Readiness Check — support now lives here rather than on the old portal.', url:'https://me.sap.com', tags:'portal licence system incident dashboard support' },
+  { cat:'community', ic:'note', name:'SAP Notes & KBAs', desc:'Search corrections and known issues by note number.', url:'https://me.sap.com/notes', tags:'note kba correction oss number search' },
+  { cat:'community', ic:'download', name:'Software Downloads', desc:'Installation media, support packages and maintenance planner.', url:'https://me.sap.com/softwarecenter', tags:'download media support package swdc' },
+  { cat:'community', ic:'wrench', name:'Guided Answers', desc:'Decision trees that walk you through troubleshooting.', url:'https://ga.support.sap.com/dtp/viewer/', tags:'troubleshoot decision tree diagnose' },
+  { cat:'community', ic:'shield', name:'SAP Trust Center', desc:'Cloud availability, security posture and compliance certificates.', url:'https://www.sap.com/about/trust-center.html', tags:'status uptime security compliance gdpr' },
+
+  // BTP & Development
+  { cat:'btp', ic:'code', big:true, name:'SAP Developer Center', desc:'Tutorials, trial access, tooling downloads and developer news — the developer portal proper.', url:'https://developers.sap.com', tags:'developer portal trial tools abap cap rap eclipse' },
+  { cat:'btp', ic:'plug', big:true, name:'Business Accelerator Hub', desc:'Every released API, event and prepackaged integration package. Check here before building anything custom.', url:'https://api.sap.com', tags:'api hub odata event released whitelisted integration content' },
+  { cat:'btp', ic:'cloud', name:'BTP Trial Cockpit', desc:'Free trial subaccounts, entitlements and service instances.', url:'https://cockpit.hanatrial.ondemand.com', tags:'trial cockpit subaccount entitlement free hanatrial' },
+  { cat:'btp', ic:'gear', name:'BTP Cockpit', desc:'Productive global account administration, quotas and subscriptions.', url:'https://account.hana.ondemand.com', tags:'cockpit production global account admin quota' },
+  { cat:'btp', ic:'flow', name:'Integration Suite', desc:'iFlows, API Management, Event Mesh and the developer portal.', url:'https://help.sap.com/docs/integration-suite', tags:'cpi iflow api management event mesh cloud integration' },
+  { cat:'btp', ic:'blocks', name:'SAP Build', desc:'Low-code apps, process automation and Work Zone sites.', url:'https://www.sap.com/products/technology-platform/low-code-app-builder.html', tags:'build apps process automation work zone low code' },
+  { cat:'btp', ic:'folder', name:'SAP Samples on GitHub', desc:'Reference implementations for CAP, RAP, Fiori and CPI.', url:'https://github.com/SAP-samples', tags:'github code sample repository' },
+  { cat:'btp', ic:'bulb', guide:'btp', name:'What to learn in BTP', desc:'The platform in five layers, in the order worth learning them.', tags:'learning path cap rap hana cloud ai core guide' },
+  { cat:'btp', ic:'network', guide:'integration', name:'Integration mechanisms', desc:'IDoc, OData, SOAP, REST, events — and where each belongs.', tags:'idoc odata soap rest bapi rfc cpi event mesh guide' },
+
+  // Ariba
+  { cat:'ariba', ic:'rocket', big:true, tag:'New', name:'Next-Gen SAP Ariba', desc:'The rebuilt, BTP-based source-to-pay platform, generally available since March 2026. Official documentation entry point.', url:'https://help.sap.com/docs/ariba/f5681fbd739744be88f4f5e8f8a49ead/e0b0ba69b4e54ea6a642dc813094b782.html', tags:'next gen nextgen rebuilt btp intake joule fiori' },
+  { cat:'ariba', ic:'news', name:'Next-Gen: the announcement', desc:'SAP News on what was rebuilt and the AI agents inside it.', url:'https://news.sap.com/2026/03/next-gen-sap-ariba-foundation-for-intelligent-procurement/', tags:'next gen announcement news intelligent procurement icertis' },
+  { cat:'ariba', ic:'doc', name:'Ariba Help Portal', desc:'Sourcing, Contracts, Buying, Invoicing and Network docs.', url:'https://help.sap.com/docs/ariba', tags:'documentation sourcing buying invoicing guided buying slp' },
+  { cat:'ariba', ic:'bell', name:'SAP Ariba Connect', desc:'Release notes, planned downtime and realm support.', url:'https://support.ariba.com', tags:'release note realm downtime support connect' },
+  { cat:'ariba', ic:'network', name:'Ariba Network', desc:'Where buyers and suppliers actually transact.', url:'https://service.ariba.com', tags:'network supplier buyer transact login' },
+  { cat:'ariba', ic:'clipboard', name:'Onboarding Resource Center', desc:'Deployment and enablement material for Ariba.', url:'https://support.sap.com/en/product/onboarding-resource-center/ariba.html', tags:'onboarding deployment resource center enablement' },
+  { cat:'ariba', ic:'globe', name:'SAP Business Network', desc:'Supplier, logistics and asset networks.', url:'https://www.sap.com/products/business-network.html', tags:'business network supplier logistics asset' },
+  { cat:'ariba', ic:'play', name:'Business Network Videos', desc:'The Business Network video playlist. Opens straight into the player rather than a landing page.', url:'https://cdnapisec.kaltura.com/html5/html5lib/v2.86/mwEmbedFrame.php/p/1921661/uiconf_id/31736811?wid=_1921661&iframeembed=true&playerId=kaltura_player_1507216725&flashvars%5bstreamerType%5d=auto&flashvars%5bplaylistAPI.kpl0Id%5d=1_zml0bqmm', tags:'business network video playlist kaltura recording demo training watch' },
+  { cat:'ariba', ic:'book', name:'Supplier Learning Portal', desc:'Enablement material for suppliers on the Business Network — what to send them when onboarding.', url:'https://support.ariba.com/SBN_Supplier_Learning_Portal#/', tags:'supplier learning portal sbn enablement onboarding training network education' },
+  { cat:'ariba', ic:'route', tag:'Course', name:'Ariba NextGen Course', desc:'Mastering SAP BTP for Next-Gen SAP Ariba Procurement Consultants — the BTP side of the rebuilt platform.', url:'https://learning.sap.com/learning-journeys/mastering-sap-btp-for-next-gen-sap-ariba-procurement-consultants', tags:'course learning journey next gen nextgen btp procurement consultant mastering certification' },
+  { cat:'ariba', ic:'blocks', tag:'Course', name:'Business Network — Supply Chain', desc:'Configuring SAP Business Network Supply Chain Collaboration.', url:'https://learning.sap.com/learning-journeys/configuring-sap-business-network-supply-chain-collaboration', tags:'course learning journey scc supply chain collaboration business network configuring' },
+  { cat:'ariba', ic:'plug', tag:'Course', name:'Managed Gateway', desc:'Administering SAP Integration Suite, Managed Gateway for Spend Management and SAP Business Network — the CIG administration journey.', url:'https://learning.sap.com/learning-journeys/administering-sap-integration-suite-managed-gateway-for-spend-management-and-sap-business-network-1', tags:'course learning journey managed gateway cig integration suite spend management administering' },
+  { cat:'ariba', ic:'grid', big:true, name:'Ariba & Fieldglass Community Hub', desc:'The community topic page for Ariba and Fieldglass — the front door to the discussions, blogs and groups.', url:'https://community.sap.com/topics/ariba-fieldglass', tags:'community hub topic ariba fieldglass discussions blogs spend' },
+  { cat:'ariba', ic:'users', name:'Spend Management Q&A', desc:'Ask and search questions across the Ariba and spend solutions.', url:'https://community.sap.com/t5/spend-management/ct-p/spend-management', tags:'community questions answers forum discussion spend management procurement buying invoicing sourcing' },
+  { cat:'ariba', ic:'note', name:'Spend Management Blogs', desc:'Blog posts by SAP on Ariba, Business Network and procurement.', url:'https://community.sap.com/t5/spend-management-blogs-by-sap/bd-p/spend-management-blog-sap', tags:'community blog posts sap spend management ariba network supplier' },
+  { cat:'ariba', ic:'chart', name:'Category Management Hub', desc:'Topic hub for SAP Ariba Category Management — category strategy and market intelligence.', url:'https://pages.community.sap.com/topics/spend-management/ariba-category-management', tags:'category management strategy market intelligence topic hub supplier' },
+  { cat:'ariba', ic:'target', name:'Central Procurement Hub', desc:'Topic hub for SAP Ariba Central Procurement — hub-and-spoke with S/4HANA and ERP.', url:'https://community.sap.com/topics/central-procurement', tags:'central procurement hub spoke s4hana erp integration topic configuration' },
+  { cat:'ariba', ic:'map', name:'Procurement Release Readiness', desc:'What is shipping in each release across the procurement solutions.', url:'https://pages.community.sap.com/topics/spend-management/release-readiness-procurement', tags:'release readiness what is new procurement quarterly update roadmap' },
+  { cat:'ariba', ic:'sparkle', name:'Intelligent Spend Management', desc:'The wider spend portfolio topic page, above the individual products.', url:'https://pages.community.sap.com/topics/intelligent-spend-management', tags:'intelligent spend management portfolio topic page overview' },
+  { cat:'ariba', ic:'pulse', guide:'nextgen', name:'Next-Gen Ariba, explained', desc:'What changed, what it runs on, what a migration involves — with SAP’s own announcement and walkthrough linked at the end.', tags:'next gen guide intake icertis joule bid analysis migration community' },
+  { cat:'ariba', ic:'cart', guide:'ariba', name:'Source-to-Pay landscape', desc:'Upstream, downstream, network and the integration between.', tags:'upstream downstream cig guided buying contracts guide' },
+
+  // S/4HANA & Process
+  { cat:'s4', ic:'flow', big:true, name:'Process Navigator', desc:'Best-practice process flows, scope items and ready-made test scripts. The starting point for any scoping conversation.', url:'https://me.sap.com/processnavigator', tags:'best practice scope item test script signavio flow' },
+  { cat:'s4', ic:'grid', name:'Fiori Apps Reference Library', desc:'Which app exists, which role it needs, which OData service it calls.', url:'https://fioriappslibrary.hana.ondemand.com', tags:'fiori app library role catalogue odata app id' },
+  { cat:'s4', ic:'doc', name:'S/4HANA Documentation', desc:'Release docs, simplification items and what is new.', url:'https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE', tags:'s4hana on premise release simplification' },
+  { cat:'s4', ic:'cloud', name:'S/4HANA Cloud Documentation', desc:'Public and Private Cloud editions, scope and configuration.', url:'https://help.sap.com/docs/SAP_S4HANA_CLOUD', tags:'s4hana cloud public private edition rise' },
+  { cat:'s4', ic:'clipboard', name:'SAP Readiness Check', desc:'Pre-conversion analysis of custom code, add-ons and sizing.', url:'https://me.sap.com/readinesscheck', tags:'conversion readiness custom code addon sizing' },
+
+  // AI & Data
+  { cat:'ai', ic:'target', big:true, name:'SAP Business AI', desc:'The AI portfolio: embedded capabilities, agents and the AI foundation on BTP.', url:'https://www.sap.com/products/artificial-intelligence.html', tags:'ai business agents generative foundation' },
+  { cat:'ai', ic:'sparkle', name:'Joule', desc:'The assistant embedded across SAP cloud products.', url:'https://www.sap.com/products/artificial-intelligence/joule-base.html', tags:'joule assistant copilot activate' },
+  { cat:'ai', ic:'briefcase', name:'Joule for Consultants', desc:'The consultant-facing assistant for docs and implementation work.', url:'https://www.sap.com/products/artificial-intelligence/joule-for-consultants.html', tags:'joule consultant implementation assistant' },
+  { cat:'ai', ic:'database', name:'SAP HANA Cloud', desc:'The managed database under CAP apps and HDI containers.', url:'https://www.sap.com/products/technology-platform/hana.html', tags:'hana cloud database hdi managed' },
+  { cat:'ai', ic:'layers', name:'SAP Datasphere', desc:'Business data fabric: modelling, federation, semantic layers.', url:'https://www.sap.com/products/technology-platform/datasphere.html', tags:'datasphere data fabric warehouse modelling federation' },
+  { cat:'ai', ic:'chart', name:'SAP Analytics Cloud', desc:'Planning, BI and predictive on top of your SAP data.', url:'https://www.sap.com/products/technology-platform/cloud-analytics.html', tags:'sac analytics planning bi dashboard story' },
+
+  // Architecture & Toolchain
+  { cat:'arch', ic:'layers', big:true, name:'SAP Architecture Center', desc:'Reference architectures and the enterprise architecture framework, with diagrams you can actually reuse.', url:'https://architecture.learning.sap.com', tags:'reference architecture ea framework diagram methodology' },
+  { cat:'arch', ic:'flow', name:'SAP Signavio', desc:'Process mining, modelling and transformation suite.', url:'https://www.signavio.com', tags:'signavio process mining modelling collaboration hub' },
+  { cat:'arch', ic:'grid', name:'SAP LeanIX', desc:'Application portfolio and enterprise architecture management.', url:'https://www.leanix.net', tags:'leanix application portfolio ea landscape' },
+  { cat:'arch', ic:'gear', name:'SAP Cloud ALM', desc:'Implementation and operations across the landscape.', url:'https://support.sap.com/en/alm/sap-cloud-alm.html', tags:'cloud alm implementation operations monitoring' },
+  { cat:'arch', ic:'check', guide:'cleancore', name:'Clean core, explained', desc:'The four extensibility tiers and where a change belongs.', tags:'clean core extensibility key user side by side released api guide' },
+  // Document Library (Google Drive — opens in Drive, access controlled there)
+  { cat:'library', ic:'folder', big:true, name:'SAP Document Library', desc:'The whole library in Google Drive \u2014 guides, runbooks and process documents, any size. Add files in Drive and they are there next time.', url:'https://drive.google.com/drive/folders/1holyAP4Iqez6JdpG6Uk3_vdoJOEtQBnn', tags:'drive library documents folder guides runbooks pdf upload store all' },
+  { cat:'library', ic:'cart', name:'Ariba', desc:'Ariba and Business Network documents.', url:'https://drive.google.com/drive/folders/1Q1AG896qbjexV4IrLvLldaeip_RxIcKq', tags:'drive folder ariba business network supplier documents' },
+  { cat:'library', ic:'blocks', name:'S4HANA', desc:'S/4HANA documents and process material.', url:'https://drive.google.com/drive/folders/123-6U0WdUI4YROd0Zd9cErIiiL_1aIhu', tags:'drive folder s4hana documents process' },
+  { cat:'library', ic:'plug', name:'BTP and Integration', desc:'BTP, Integration Suite and interface documents.', url:'https://drive.google.com/drive/folders/1k7dOVSP7TqAP1N3Mgp2y4gToZBIC_ESx', tags:'drive folder btp integration suite cpi documents' },
+  { cat:'library', ic:'badge', name:'Learning and Certification', desc:'Course material, exam notes and practice documents.', url:'https://drive.google.com/drive/folders/1VtXRc1P8KptWQ8uBngiP8loyQaA9VU2_', tags:'drive folder learning certification course exam study' },
+  { cat:'library', ic:'layers', name:'Architecture and Toolchain', desc:'Reference architectures, Signavio, LeanIX and Cloud ALM material.', url:'https://drive.google.com/drive/folders/1nOHeDAN8KbKYOzkb5jqYpdTC2UnZs6Md', tags:'drive folder architecture toolchain signavio leanix cloud alm' },
+  { cat:'library', ic:'briefcase', name:'Project Documents', desc:'Live project material.', url:'https://drive.google.com/drive/folders/1KUquHzSFYdLyjV86mBD79tznFEgJLHCb', tags:'drive folder project documents client engagement' },
+
+]
+
+const GUIDES = {
+  nextgen: {
+    title:'Next-Gen Ariba, explained', ic:'rocket', cat:'ariba',
+    sub:'Announced at SAP Connect in October 2025, generally available 12 March 2026.',
+    sections:[
+      { h:'What it actually is', ul:[
+        ['A rebuild, not a facelift','SAP describes source-to-pay as reengineered from the ground up, rather than AI bolted onto the existing stack.'],
+        ['Built on BTP','which gives it a shared real-time data foundation across the whole cycle, plus the usual BTP extensibility model.'],
+        ['One Fiori launchpad','a simplified experience replacing the fragmented module-by-module UX.'],
+        ['Tighter ERP integration','closer coupling with SAP Cloud ERP, open APIs, more consistent data across the suite.']
+      ]},
+      { h:'The pieces worth knowing', ul:[
+        ['Intake Management','globally available. One entry point for every procurement request, instead of users guessing which module to start in.'],
+        ['Contracts via Icertis','contract lifecycle management delivered through integration with Icertis Contract Intelligence.'],
+        ['Joule, embedded','in the workflow itself rather than sold as an add-on.'],
+        ['Bid Analysis Agent','evaluates complex bid scenarios including total cost, not just unit price.'],
+        ['AI contract support','summaries, routine inquiry handling and fast lookup against contract detail.']
+      ]},
+      { h:'What it means for a live programme', ol:[
+        ['Moving is voluntary','no forced cutover announced; next-gen capabilities come without commercial implications.'],
+        ['Run both in parallel','current and next-gen environments can co-exist during transition. That is how you de-risk it.'],
+        ['Expect incremental delivery','further capabilities land through 2026 and into 2027, so scope moves under you.'],
+        ['Re-examine your extensions','a BTP-based platform changes where custom fields and integrations should live. Worth an architecture pass early.']
+      ]},
+      { h:'Open questions', ul:[
+        ['No published end-of-life','for the current platform.'],
+        ['Migration detail is thin','SAP says tools, services and advance timelines are coming; the step-by-step is not public yet.'],
+        ['Commercials','check your own agreement rather than assuming parity.']
+      ]}
+    ],
+    links:[['Help Portal','https://help.sap.com/docs/ariba/f5681fbd739744be88f4f5e8f8a49ead/e0b0ba69b4e54ea6a642dc813094b782.html'],['SAP News','https://news.sap.com/2026/03/next-gen-sap-ariba-foundation-for-intelligent-procurement/'],['Community intro','https://community.sap.com/t5/spend-management-blog-posts-by-sap/introduction-to-next-gen-sap-ariba/ba-p/14387653']]
+  },
+  btp: {
+    title:'What to learn in BTP', ic:'route', cat:'btp',
+    sub:'Five layers. Learn them in this order and each one gives you the next.',
+    sections:[
+      { h:'Learn in this order', ol:[
+        ['Foundation','Global account, subaccounts, entitlements, roles. Nothing else works until this is clear.'],
+        ['Connectivity','Destinations plus Cloud Connector. This is what reaches back into your on-premise S/4HANA.'],
+        ['Extension','CAP or RAP for an app; ABAP Environment if the logic genuinely belongs in ABAP.'],
+        ['Integration','Integration Suite: iFlows, API Management, Event Mesh.'],
+        ['Data and AI','HANA Cloud and Datasphere for data, AI Core and AI Launchpad for models.']
+      ]},
+      { h:'Foundation', ul:[
+        ['Subaccount','the boundary for region, entitlements and quota.'],
+        ['Entitlements','what a subaccount may consume. A trial has a fixed, free allowance — watch it.'],
+        ['Destinations','the connection definition an app resolves at runtime.'],
+        ['Cloud Connector','the agent that exposes an on-premise system to a subaccount, resource by resource.']
+      ]},
+      { h:'Building things', ul:[
+        ['CAP','Node or Java, CDS-modelled services. The default for a new side-by-side app.'],
+        ['RAP','ABAP RESTful Application Programming — the in-stack route, OData out of the box.'],
+        ['ABAP Environment','ABAP as a managed service on BTP, developed in ADT or ABAP Cloud.'],
+        ['SAP Build','low-code apps, process automation and Work Zone sites.']
+      ]},
+      { h:'Where the data sits', ul:[
+        ['HANA Cloud','the managed database under CAP apps and HDI containers.'],
+        ['Datasphere','the business data fabric layer for modelling and federation.'],
+        ['Event Mesh','asynchronous events, so systems stop polling each other.']
+      ]}
+    ],
+    links:[['Discovery Center','https://discovery-center.cloud.sap'],['Trial cockpit','https://cockpit.hanatrial.ondemand.com'],['Tutorials','https://developers.sap.com']]
+  },
+  integration: {
+    title:'Integration mechanisms', ic:'network', cat:'btp',
+    sub:'What each protocol is for, and when to reach for it.',
+    sections:[
+      { h:'Synchronous', ul:[
+        ['OData','the default for Fiori and any modern read/write API. Check the service in the Business Accelerator Hub before you build.'],
+        ['REST / JSON','for non-SAP consumers and anything cloud-native.'],
+        ['SOAP','still the backbone of A2A integration in older landscapes. Contract-first, strongly typed.'],
+        ['RFC / BAPI','in-stack calls, usually reached from outside through the Cloud Connector.']
+      ]},
+      { h:'Asynchronous', ul:[
+        ['IDoc','the classic document-based interface. Reliable, verbose, and still everywhere in P2P and O2C.'],
+        ['Events','Event Mesh or Advanced Event Mesh. Publish a business event, let consumers subscribe. No polling.']
+      ]},
+      { h:'The middle layer', ul:[
+        ['Integration Suite (CPI)','iFlows do the mapping, routing and protocol conversion between the two sides.'],
+        ['API Management','the policy layer in front: throttling, keys, traffic shaping, developer portal.'],
+        ['Cloud Integration Automation','guided setup for standard SAP-to-SAP integration scenarios.']
+      ]},
+      { h:'Choosing one', ol:[
+        ['Is there a released API?','Check api.sap.com first. A released OData service beats anything custom.'],
+        ['Does the receiver need it now?','If not, make it an event.'],
+        ['Do the structures differ?','Then it goes through an iFlow, not point to point.'],
+        ['Is it on-premise?','Cloud Connector, with the resource explicitly exposed. Nothing implicit.']
+      ]}
+    ],
+    links:[['Business Accelerator Hub','https://api.sap.com'],['Integration Suite docs','https://help.sap.com/docs/integration-suite']]
+  },
+  ariba: {
+    title:'Source-to-Pay landscape', ic:'cart', cat:'ariba',
+    sub:'How the Ariba estate fits together, from category strategy to payment.',
+    sections:[
+      { h:'Upstream', ul:[
+        ['Sourcing','RFx and auctions, award through to contract.'],
+        ['Contracts','contract workspaces, clause library, compliance against the agreement.'],
+        ['Supplier Lifecycle & Performance','registration, qualification, segmentation, risk.'],
+        ['Spend Analysis','classified spend — the input to any category strategy.']
+      ]},
+      { h:'Downstream', ul:[
+        ['Guided Buying','the buyer-facing front end. Policies and forms belong here, not in the catalogue.'],
+        ['Buying & Invoicing','requisition, order, receipt, invoice reconciliation.'],
+        ['Catalogs','CIF, punchout, PunchOut level 2.'],
+        ['Payment','discount management and payables.']
+      ]},
+      { h:'Connective tissue', ul:[
+        ['SAP Business Network','where the supplier actually transacts with you.'],
+        ['Cloud Integration Gateway','the standard route between Ariba and S/4HANA or ECC.'],
+        ['Master Data Integration','keeps supplier and material master aligned across the estate.']
+      ]},
+      { h:'Where programmes go wrong', ul:[
+        ['Policy in the wrong place','rules coded into approval flows that belonged in guided buying forms.'],
+        ['Realm discipline','test and production realms drifting apart over a long programme.'],
+        ['Supplier onboarding','underestimated every time. It is a change programme, not a config task.'],
+        ['Custom fields','every one added to the integration surface has to be maintained forever.']
+      ]}
+    ],
+    links:[['Ariba docs','https://help.sap.com/docs/ariba'],['Ariba Connect','https://support.ariba.com'],['Onboarding Center','https://support.sap.com/en/product/onboarding-resource-center/ariba.html']]
+  },
+  cleancore: {
+    title:'Clean core, explained', ic:'check', cat:'arch',
+    sub:'Four tiers of extensibility. Pick the highest one that does the job.',
+    sections:[
+      { h:'The tiers, best first', ol:[
+        ['Configuration','Standard config in SPRO or the Fiori configuration apps. No code, survives every upgrade.'],
+        ['Key user extensibility','Custom fields, logic in released BAdIs, custom CDS views. In-app and upgrade-stable.'],
+        ['Developer extensibility','ABAP Cloud in the on-stack environment, restricted to released objects.'],
+        ['Side-by-side on BTP','The app runs outside the ERP and talks to it through released APIs.']
+      ]},
+      { h:'What makes a core unclean', ul:[
+        ['Modifications','changes to SAP objects. Every upgrade re-opens them.'],
+        ['Unreleased object use','calling a table or function SAP never contracted to keep stable.'],
+        ['Shadow logic','business rules duplicated in a custom program nobody owns.'],
+        ['Silent data growth','custom tables nobody archives.']
+      ]},
+      { h:'How to prove it', ul:[
+        ['ATC with the ABAP Cloud variant','flags every use of an unreleased object.'],
+        ['Custom Code Migration app','shows which custom objects are even still executed.'],
+        ['Readiness Check','the pre-conversion view of custom code and simplification items.'],
+        ['Released API check','if it is in the Business Accelerator Hub, SAP has contracted to keep it stable.']
+      ]}
+    ],
+    links:[['Architecture Center','https://architecture.learning.sap.com'],['Released APIs','https://api.sap.com'],['Readiness Check','https://me.sap.com/readinesscheck']]
+  }
+}
+
+/* ===== State ===== */
+
+let view = 'home';
+let query = '';
+
+function loadPins() {
+  try { return JSON.parse(localStorage.getItem('sap-lp-pins') || '[]'); } catch (e) { return []; }
+}
+function savePins(p) {
+  try { localStorage.setItem('sap-lp-pins', JSON.stringify(p)); } catch (e) {}
+}
+let pins = loadPins();
+
+const viewEl = document.getElementById('view');
+const navEl = document.getElementById('nav');
+
+document.getElementById('meta').textContent =
+  TILES.filter(t => t.url).length + ' links \u00b7 ' + Object.keys(GUIDES).length + ' guides';
+
+function hostOf(url) {
+  if (!/^https?:\/\//i.test(url || '')) return '';
+  try {
+    const hn = new URL(url).hostname.replace(/^www\./, '');
+    return hn === 'drive.google.com' ? 'your Google Drive' : hn;
+  } catch (e) { return ''; }
+}
+
+/* ===== Nav ===== */
+
+function buildNav() {
+  navEl.innerHTML = '';
+  const add = (id, label, hue, alt, count) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.style.setProperty('--hue', hue);
+    b.style.setProperty('--alt', alt);
+    b.setAttribute('aria-current', String(view === id));
+    const sw = document.createElement('span');
+    sw.className = 'swatch';
+    b.appendChild(sw);
+    b.appendChild(document.createTextNode(label));
+    if (count != null) {
+      const n = document.createElement('span');
+      n.className = 'n';
+      n.textContent = count;
+      b.appendChild(n);
+    }
+    b.addEventListener('click', () => {
+      view = id;
+      document.getElementById('rail').classList.remove('open');
+      buildNav();
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    navEl.appendChild(b);
+  };
+
+  add('home', 'Everything', 'var(--accent)', 'var(--a-btp)', TILES.length);
+
+  const l1 = document.createElement('div');
+  l1.className = 'nav-label';
+  l1.textContent = 'Groups';
+  navEl.appendChild(l1);
+  CATS.forEach(c => add(c.id, c.label, c.hue, c.alt, TILES.filter(t => t.cat === c.id).length));
+
+  const l2 = document.createElement('div');
+  l2.className = 'nav-label';
+  l2.textContent = 'More';
+  navEl.appendChild(l2);
+  add('guides', 'Guides', 'var(--c-s4)', 'var(--a-s4)', Object.keys(GUIDES).length);
+  add('pinned', 'Pinned', 'var(--c-ariba)', 'var(--a-ariba)', pins.length);
+}
+
+/* ===== Tiles ===== */
+
+function makeTile(opts, i) {
+  const el = document.createElement('article');
+  el.className = 'tile' + (opts.big ? ' big' : '') + (opts.hl ? ' hl' : '');
+  el.style.setProperty('--hue', opts.hue);
+  el.style.setProperty('--alt', opts.alt);
+  el.style.setProperty('--i', Math.min(i, 14));
+
+  const link = document.createElement(opts.url ? 'a' : 'button');
+  link.className = 'tile-link';
+  if (opts.url) {
+    link.href = opts.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', opts.name + ' \u2014 opens in a new tab');
+  } else {
+    link.type = 'button';
+    link.setAttribute('aria-label', opts.name);
+    link.addEventListener('click', opts.onOpen);
+  }
+  el.appendChild(link);
+
+  if (opts.actions && opts.actions.length) {
+    const acts = document.createElement('div');
+    acts.className = 'tile-actions';
+    opts.actions.forEach(a => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'act' + (a.on ? ' on' : '');
+      b.title = a.title;
+      b.setAttribute('aria-label', a.title);
+      b.innerHTML = icon(a.ic, a.on ? 2 : 1.7);
+      if (a.on && a.ic === 'star') b.querySelector('svg').setAttribute('fill', 'currentColor');
+      b.addEventListener('click', ev => { ev.preventDefault(); ev.stopPropagation(); a.run(); });
+      acts.appendChild(b);
+    });
+    el.appendChild(acts);
+  }
+
+  const top = document.createElement('div');
+  top.className = 'tile-top';
+  const plate = document.createElement('span');
+  plate.className = 'plate';
+  plate.innerHTML = icon(opts.ic, 1.8);
+  top.appendChild(plate);
+  const h = document.createElement('h4');
+  h.textContent = opts.name;
+  top.appendChild(h);
+  el.appendChild(top);
+
+  if (opts.desc) {
+    const pp = document.createElement('p');
+    pp.textContent = opts.desc;
+    el.appendChild(pp);
+  }
+
+  const foot = document.createElement('div');
+  foot.className = 'tile-foot';
+  if (opts.tag) {
+    const t = document.createElement('span');
+    t.className = 'chip-tag solid';
+    t.textContent = opts.tag;
+    foot.appendChild(t);
+  }
+  if (opts.url) {
+    const host = document.createElement('span');
+    host.className = 'host';
+    host.textContent = hostOf(opts.url);
+    foot.appendChild(host);
+    const go = document.createElement('span');
+    go.className = 'go';
+    go.innerHTML = icon('arrow', 1.9);
+    foot.appendChild(go);
+  } else {
+    const t = document.createElement('span');
+    t.className = 'chip-tag';
+    t.textContent = 'Guide';
+    foot.appendChild(t);
+    const go = document.createElement('span');
+    go.className = 'go';
+    go.innerHTML = icon('chevron', 2);
+    foot.appendChild(go);
+  }
+  el.appendChild(foot);
+
+  el.addEventListener('pointermove', ev => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+  });
+
+  return el;
+}
+
+function tileOptsFor(t) {
+  const c = CATMAP[t.cat];
+  const pinned = pins.indexOf(t.name) !== -1;
+  return {
+    name: t.name, desc: t.desc, url: t.url, big: t.big, tag: t.tag, hl: t.hl,
+    ic: t.ic, hue: t.hue || c.hue, alt: t.alt || c.alt,
+    onOpen: t.guide ? () => openGuide(t.guide) : null,
+    actions: [{
+      ic: 'star', on: pinned, title: pinned ? 'Unpin' : 'Pin to Pinned',
+      run: () => {
+        pins = pinned ? pins.filter(n => n !== t.name) : pins.concat([t.name]);
+        savePins(pins);
+        buildNav();
+        render();
+      }
+    }]
+  };
+}
+
+function matches(t) {
+  if (!query) return true;
+  const hay = (t.name + ' ' + (t.desc || '') + ' ' + (t.tags || '') + ' ' + (t.url || '')).toLowerCase();
+  return query.split(/\s+/).every(w => hay.includes(w));
+}
+
+function headEl(title, sub) {
+  const d = document.createElement('div');
+  d.className = 'view-head';
+  const h = document.createElement('h2'); h.textContent = title;
+  d.appendChild(h);
+  if (sub) { const pp = document.createElement('p'); pp.textContent = sub; d.appendChild(pp); }
+  return d;
+}
+
+function groupSection(cat, items, counter) {
+  const g = document.createElement('section');
+  g.className = 'group';
+  g.style.setProperty('--hue', cat.hue);
+  g.style.setProperty('--alt', cat.alt);
+
+  const head = document.createElement('div');
+  head.className = 'group-head';
+  const dot = document.createElement('span'); dot.className = 'dot';
+  const h3 = document.createElement('h3'); h3.textContent = cat.label;
+  const rule = document.createElement('span'); rule.className = 'rule';
+  const count = document.createElement('span'); count.className = 'count';
+  count.textContent = String(items.length).padStart(2, '0');
+  head.appendChild(dot); head.appendChild(h3); head.appendChild(rule); head.appendChild(count);
+  g.appendChild(head);
+
+  const grid = document.createElement('div');
+  grid.className = 'grid';
+  items.forEach(t => grid.appendChild(makeTile(tileOptsFor(t), counter.n++)));
+  g.appendChild(grid);
+  return g;
+}
+
+/* ===== Render ===== */
+
+function render() {
+  viewEl.innerHTML = '';
+  const counter = { n: 0 };
+
+  if (view === 'guides') {
+    viewEl.appendChild(headEl('Guides', 'Short outlines rather than links \u2014 what an area contains, and the order worth learning it in.'));
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    Object.keys(GUIDES).forEach(k => {
+      const g = GUIDES[k];
+      const c = CATMAP[g.cat];
+      grid.appendChild(makeTile({
+        name: g.title, desc: g.sub, ic: g.ic, big: true,
+        hue: c.hue, alt: c.alt, onOpen: () => openGuide(k)
+      }, counter.n++));
+    });
+    viewEl.appendChild(grid);
+    return;
+  }
+
+  if (view === 'pinned') {
+    viewEl.appendChild(headEl('Pinned', 'Tiles you starred. Kept in this browser only.'));
+    const items = TILES.filter(t => pins.indexOf(t.name) !== -1 && matches(t));
+    if (!items.length) {
+      const e = document.createElement('div');
+      e.className = 'empty';
+      const s = document.createElement('strong'); s.textContent = 'Nothing pinned yet';
+      e.appendChild(s);
+      e.appendChild(document.createTextNode('Hover any tile and press the star to keep it here.'));
+      viewEl.appendChild(e);
+      return;
+    }
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    items.forEach(t => grid.appendChild(makeTile(tileOptsFor(t), counter.n++)));
+    viewEl.appendChild(grid);
+    return;
+  }
+
+  const cats = view === 'home' ? CATS : CATS.filter(c => c.id === view);
+  if (view === 'home') {
+    viewEl.appendChild(headEl('Everything', 'Official SAP sources, grouped. Links open in a new tab; guide tiles open an outline here.'));
+  } else {
+    viewEl.appendChild(headEl(CATMAP[view].label, null));
+  }
+
+  let total = 0;
+  cats.forEach(c => {
+    const items = TILES.filter(t => t.cat === c.id && matches(t));
+    if (!items.length) return;
+    total += items.length;
+    viewEl.appendChild(groupSection(c, items, counter));
+  });
+
+  if (!total) {
+    const e = document.createElement('div');
+    e.className = 'empty';
+    const s = document.createElement('strong'); s.textContent = 'No tiles match that';
+    e.appendChild(s);
+    e.appendChild(document.createTextNode('Try a product name, a protocol, or clear the search with Esc.'));
+    viewEl.appendChild(e);
+  }
+}
+
+/* ===== Drawer ===== */
+
+const drawer = document.getElementById('drawer');
+const scrim = document.getElementById('scrim');
+const dTitle = document.getElementById('drawer-title');
+const dSub = document.getElementById('drawer-sub');
+const dBody = document.getElementById('drawer-body');
+const dPlate = document.getElementById('drawer-plate');
+let lastFocus = null;
+
+function openGuide(key) {
+  const g = GUIDES[key];
+  if (!g) return;
+  const c = CATMAP[g.cat];
+  lastFocus = document.activeElement;
+  drawer.style.setProperty('--hue', c.hue);
+  drawer.style.setProperty('--alt', c.alt);
+  dPlate.style.setProperty('--hue', c.hue);
+  dPlate.style.setProperty('--alt', c.alt);
+  dPlate.innerHTML = icon(g.ic, 1.8);
+  dTitle.textContent = g.title;
+  dSub.textContent = g.sub;
+  dBody.innerHTML = '';
+
+  g.sections.forEach(sec => {
+    const s = document.createElement('section');
+    const h3 = document.createElement('h3'); h3.textContent = sec.h;
+    s.appendChild(h3);
+    const list = document.createElement(sec.ol ? 'ol' : 'ul');
+    (sec.ol || sec.ul).forEach(pair => {
+      const li = document.createElement('li');
+      const b = document.createElement('b'); b.textContent = pair[0];
+      const sp = document.createElement('span'); sp.textContent = ' \u2014 ' + pair[1];
+      li.appendChild(b); li.appendChild(sp);
+      list.appendChild(li);
+    });
+    s.appendChild(list);
+    dBody.appendChild(s);
+  });
+
+  if (g.links && g.links.length) {
+    const s = document.createElement('section');
+    const h3 = document.createElement('h3'); h3.textContent = 'Go to';
+    s.appendChild(h3);
+    const wrap = document.createElement('div'); wrap.className = 'drawer-links';
+    g.links.forEach(l => {
+      const a = document.createElement('a');
+      a.href = l[1]; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.textContent = l[0];
+      wrap.appendChild(a);
+    });
+    s.appendChild(wrap);
+    dBody.appendChild(s);
+  }
+
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  scrim.classList.add('open');
+  dBody.scrollTop = 0;
+  document.getElementById('drawer-close').focus();
+}
+
+function closeGuide() {
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  scrim.classList.remove('open');
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+
+document.getElementById('drawer-close').addEventListener('click', closeGuide);
+scrim.addEventListener('click', () => {
+  closeGuide();
+  document.getElementById('rail').classList.remove('open');
+});
+
+/* ===== Controls ===== */
+
+const themeBtn = document.getElementById('theme');
+function currentlyDark() {
+  const set = document.documentElement.getAttribute('data-theme');
+  if (set) return set === 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+themeBtn.addEventListener('click', () => {
+  const next = currentlyDark() ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('sap-lp-theme', next); } catch (e) {}
+});
+try {
+  const saved = localStorage.getItem('sap-lp-theme');
+  if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
+} catch (e) {}
+
+document.getElementById('railtoggle').addEventListener('click', () => {
+  document.getElementById('rail').classList.toggle('open');
+});
+
+const qInput = document.getElementById('q');
+qInput.addEventListener('input', () => { query = qInput.value.trim().toLowerCase(); render(); });
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (drawer.classList.contains('open')) { closeGuide(); return; }
+    if (document.getElementById('rail').classList.contains('open')) { document.getElementById('rail').classList.remove('open'); return; }
+    if (qInput.value) { qInput.value = ''; query = ''; render(); }
+    return;
+  }
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+  if (e.key === '/' && !typing) { e.preventDefault(); qInput.focus(); }
+  if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); qInput.focus(); }
+});
+
+buildNav();
+render();
+
+</script>
+</body>
+</html>
